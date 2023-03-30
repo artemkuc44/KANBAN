@@ -2,7 +2,6 @@
 
 ## Assignment 3
 
-> John, Mike, Lucy, Greg
-
+> Artjom
 
 lorem ipsum dolor sit amet com squitem
