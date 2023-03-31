@@ -14,6 +14,11 @@ int displayMenu() {
     printf("6. Quit\n");
     printf("Enter your choice (1-6): ");
     scanf("%d", &option);
+    while(option<1 || option>6)
+    {
+        printf("Incorrect input, please try again: ");
+        scanf("%d", &option);
+    }
 
     return option;
 }
