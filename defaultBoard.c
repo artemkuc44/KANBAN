@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "defaultBoard.h"
+#include "loadFile.h"
 
 int defaultBoard(void)
 {

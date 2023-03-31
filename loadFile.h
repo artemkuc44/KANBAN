@@ -5,6 +5,6 @@
 #ifndef ASSIGNMENT3_LOADFILE_H
 #define ASSIGNMENT3_LOADFILE_H
 
-int loadFile();
+int loadFile(int type);
 
 #endif //ASSIGNMENT3_LOADFILE_H
