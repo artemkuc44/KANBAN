@@ -12,7 +12,30 @@ int main(void)
 
     while (1) //loops until valid path is taken
     {
+<<<<<<< Updated upstream
         option = displayMenu();
+=======
+        case 1:
+        defaultBoard();
+            break;
+        case 2:
+            loadFile();
+            break;
+        case 3:
+            //
+            break;
+        case 4:
+            //
+            break;
+        case 5:
+            //
+            break;
+        case 6:
+            return -1;
+            break;
+        default:
+            break;
+>>>>>>> Stashed changes
 
         switch(option)
         {
