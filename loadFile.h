@@ -5,6 +5,10 @@
 #ifndef ASSIGNMENT3_LOADFILE_H
 #define ASSIGNMENT3_LOADFILE_H
 
+#include "defaultBoard.h"
+
+void copyFile(const char* name);
 int loadFile(int type);
+
 
 #endif //ASSIGNMENT3_LOADFILE_H

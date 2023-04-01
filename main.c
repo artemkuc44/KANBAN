@@ -4,6 +4,7 @@
 #include "defaultBoard.h"
 #include "loadFile.h"
 #include "displayMenu.h"
+#include "edit.h"
 
 int main(void)
 {
@@ -25,7 +26,7 @@ int main(void)
                 loadFile(0);
                 break;
             case 3:
-                //
+                //editList();
                 break;
             case 4:
                 //
