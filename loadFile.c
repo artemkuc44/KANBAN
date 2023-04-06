@@ -49,7 +49,6 @@ void loadFile(int type) {
     } else {
         printf("Enter filename: ");
         scanf("%s", filename);
-        //copyFile(filename);
     }
 
     FILE* fp = fopen(filename, "r");
@@ -61,35 +60,33 @@ void loadFile(int type) {
     Item* head = NULL;
     Item* current = NULL;
 
-    char line[MAX_NAME];
-    char name[MAX_NAME] = "";
-    char device[MAX_NAME] = "";
+    char line[MAX_NAME] = "";//assigning to "" removes junk code
+    char name[MAX_NAME] = "";//^^
+    char device[MAX_NAME] = "";//^^
 
     while (fgets(line, MAX_NAME, fp)) {
+        line[strcspn(line, "\n")] = '\0';//remove newline strcspn used to find index
+
         if (line[0] != '\t') {
-            // new name, create new item and add to list
-            Item* item = malloc(sizeof(Item));
-            if (item == NULL) {
+
+            Item* new_item = malloc(sizeof(Item));//allocates memory for new_item variable
+            if (new_item == NULL) {
                 printf("Error out of memory\n");
                 break;
             }
-            strcpy(item->name, name);
-            item->next = NULL;
+            strcpy(new_item->name, name);
+            new_item->next = NULL;
             if (head == NULL) {
-                head = item;
+                head = new_item;
             } else {
-                current->next = item;
+                current->next = new_item;
             }
-            current = item;
+            current = new_item;
+            strcpy(name, line);//copies to name array
 
-            //reset name and device strings
-            strcpy(name, line);
-            name[strcspn(name, "\n")] = '\0';
-            device[0] = '\0';
-        } else {
-            //continuation of device, append to current item
-            strcpy(device, line);
-            device[strcspn(device, "\n")] = '\0';
+            device[0] = ' ';//clears device string
+        } else {//continuation of device adds to current item
+            strcpy(device, line);//copies to device array
             strcat(current->device, "\n");
             strcat(current->device, device);
         }
@@ -100,7 +97,7 @@ void loadFile(int type) {
     //Print and traverse
     current = head;
     while (current != NULL) {
-        printf("%s:\n%s\n", current->name, current->device);
+        printf("%s\n%s\n", current->name, current->device);
         current = current->next;
     }
 
@@ -112,6 +109,8 @@ void loadFile(int type) {
         current = next;
     }
 }
+
+
 
 
 
