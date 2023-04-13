@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "loadFile.h"
-#include "defaultBoard.h"
+#include "library.h"
 #define MAX_NAME 20
 
 
@@ -60,48 +59,48 @@ void loadFile(int type) {
     Item* head = NULL;
     Item* current = NULL;
 
-    char line[MAX_NAME] = "";//assigning to "" removes junk code
-    char name[MAX_NAME] = "";//^^
-    char device[MAX_NAME] = "";//^^
+    char line[MAX_NAME] = "";
+
 
     while (fgets(line, MAX_NAME, fp)) {
-        line[strcspn(line, "\n")] = '\0';//remove newline strcspn used to find index
+        line[strcspn(line, "\n")] = '\0';
 
         if (line[0] != '\t') {
-
-            Item* new_item = malloc(sizeof(Item));//allocates memory for new_item variable
+            // Allocate memory for a new item
+            Item* new_item = malloc(sizeof(Item));
             if (new_item == NULL) {
                 printf("Error out of memory\n");
                 break;
             }
-            strcpy(new_item->name, name);
+            // Set the name and device fields of the new item
+            strcpy(new_item->name, line);
+            new_item->device[0] = '\0'; // Initialize the device field to an empty string
             new_item->next = NULL;
-            if (head == NULL) {
-                head = new_item;
+
+
+            if (head == NULL) {//head will be null during first iteration
+                head = new_item;//assigns
             } else {
                 current->next = new_item;
             }
             current = new_item;
-            strcpy(name, line);//copies to name array
-
-            device[0] = ' ';//clears device string
-        } else {//continuation of device adds to current item
-            strcpy(device, line);//copies to device array
+        } else {
+            //Append the device line to the current item's device field
+            strcat(current->device, line);
             strcat(current->device, "\n");
-            strcat(current->device, device);
         }
     }
 
     fclose(fp);
 
-    //Print and traverse
+    // Print the items in the list
     current = head;
     while (current != NULL) {
-        printf("%s\n%s\n", current->name, current->device);
+        printf("%s%s\n", current->name, current->device);
         current = current->next;
     }
 
-    //Free memory
+    // Free the memory allocated for the items in the list
     current = head;
     while (current != NULL) {
         Item* next = current->next;
@@ -109,13 +108,4 @@ void loadFile(int type) {
         current = next;
     }
 }
-
-
-
-
-
-
-
-
-
 

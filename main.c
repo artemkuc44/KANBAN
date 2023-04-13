@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "defaultBoard.h"
-#include "loadFile.h"
-#include "displayMenu.h"
-#include "edit.h"
+#include "library.h"
 
 int main(void)
 {
