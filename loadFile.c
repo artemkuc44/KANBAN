@@ -32,14 +32,11 @@ void copyFile(const char* name) {
     fclose(output);
 }
 
-
-
-
 typedef struct item {
     char name[MAX_NAME];
     char device[MAX_NAME];
     struct item* next;
-} Item;
+} item;
 
 void loadFile(int type) {
     char filename[MAX_NAME];
@@ -56,25 +53,20 @@ void loadFile(int type) {
         return;
     }
 
-    Item* head = NULL;
-    Item* current = NULL;
+    item* head = NULL;
+    item* current = NULL;
 
     char line[MAX_NAME] = "";
 
-
     while (fgets(line, MAX_NAME, fp)) {
-        line[strcspn(line, "\n")] = '\0';
+        line[strcspn(line, "\n")] = '\0';//replaces newline that fgets put there
 
         if (line[0] != '\t') {
-            // Allocate memory for a new item
-            Item* new_item = malloc(sizeof(Item));
-            if (new_item == NULL) {
-                printf("Error out of memory\n");
-                break;
-            }
-            // Set the name and device fields of the new item
+            item* new_item = malloc(sizeof(item));
+            new_item->device[0] = '\0'; //removes garbage data
+
+
             strcpy(new_item->name, line);
-            new_item->device[0] = '\0'; // Initialize the device field to an empty string
             new_item->next = NULL;
 
 
@@ -85,27 +77,26 @@ void loadFile(int type) {
             }
             current = new_item;
         } else {
-            //Append the device line to the current item's device field
-            strcat(current->device, line);
-            strcat(current->device, "\n");
+            strcpy(current->device, line);
         }
     }
 
     fclose(fp);
 
-    // Print the items in the list
-    current = head;
-    while (current != NULL) {
-        printf("%s%s\n", current->name, current->device);
-        current = current->next;
+    //Print
+
+    while (head != NULL) {
+        printf("%s%s\n", head->name, head->device);
+        head = head->next;
+
+
     }
 
-    // Free the memory allocated for the items in the list
-    current = head;
-    while (current != NULL) {
-        Item* next = current->next;
-        free(current);
-        current = next;
+    //Free
+    while (head != NULL) {
+        item* next = head->next;
+        free(head);
+        head = next;
     }
 }
 
