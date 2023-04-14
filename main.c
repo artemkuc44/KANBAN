@@ -15,7 +15,6 @@ int main(void)
         switch(option)
         {
             case 1:
-                //defaultBoard();
                 loadFile(1);
 
                 break;
@@ -23,6 +22,7 @@ int main(void)
                 loadFile(0);
                 break;
             case 3:
+                loadFile(1);
                 //editList();
                 break;
             case 4:

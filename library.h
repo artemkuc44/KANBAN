@@ -4,12 +4,22 @@
 
 #ifndef ASSIGNMENT3_LIBRARY_H
 #define ASSIGNMENT3_LIBRARY_H
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAX_NAME 50
 
-void copyFile(const char* name);
-void loadFile(int type);
-int editList(void);
+
+typedef struct item {
+    char name[MAX_NAME];
+    struct item* next;
+} item;
+
+item* loadFile(int type);
+void editList();
 int displayMenu();
-int defaultBoard(void);
+
+
 
 
 #endif //ASSIGNMENT3_LIBRARY_H
