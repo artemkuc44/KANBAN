@@ -1,5 +1,16 @@
 #include "library.h"
+void printBoard(node* head){
+    while (head != NULL) {
+//        if (head->name[0] == ' ') {
+//            printf("Device Name: %s\n", head->name);
+//        } else {
+//            printf("Person Name: %s\n", head->name);
+//        }
+        printf("%s\n",head->name);
+        head = head->next;
+    }
 
+}
 
 node* loadFile(int type) {
 
@@ -41,19 +52,9 @@ node* loadFile(int type) {
     fclose(fp);
 
     printf("\n'%s' data:\n\n",filename);
-    int count = 0;
     node* start = head;
-    while (head != NULL) {
-        if (head->name[0] == ' ') {
-            printf("Device Name: %s\n", head->name);
-        } else {
-            printf("Person Name: %s\n", head->name);
-        }
-        count ++;
-        head = head->next;
-    }
+    printBoard(start);
 
-    printf("%d",count);
 
     return start;//returns pointer to start of linked list
 

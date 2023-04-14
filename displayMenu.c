@@ -14,6 +14,23 @@ int displayMenu() {
     printf("Enter your choice (1-6): ");
     scanf("%d", &option);
 
-
     return option;
 }
+int displayEditMenu() {
+    int opt;
+
+    // Display menu with 6 options.
+    printf("\nMenu:\n");
+    printf("1. Edit an item\n");
+    printf("2. Add a new item\n");
+    printf("3. Delete an item\n");
+    printf("4. Return to main menu\n");
+    printf("Enter your choice (1-4): ");
+    scanf("%d", &opt);
+
+    return opt;
+}
+
+
+
+

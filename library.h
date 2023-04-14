@@ -14,10 +14,12 @@ typedef struct node {
     char name[MAX_NAME];
     struct node* next;
 } node;
-
+void printBoard(node * head);
 node* loadFile(int type);
-void editList();
+node* editItem(node * head);
+int editList(node* head);
 int displayMenu();
+int displayEditMenu();
 
 
 

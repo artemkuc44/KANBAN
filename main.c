@@ -5,6 +5,7 @@
 
 int main(void)
 {
+    node* start = NULL;
     system("cls");
     int option;
 
@@ -15,15 +16,16 @@ int main(void)
         switch(option)
         {
             case 1:
-                loadFile(1);
+                loadFile(option);
 
                 break;
             case 2:
-                loadFile(0);
+                loadFile(option);
                 break;
             case 3:
-                loadFile(1);
-                //editList();
+                start = loadFile(1);
+                editList(start);
+                printBoard(start);
                 break;
             case 4:
                 //
@@ -36,7 +38,8 @@ int main(void)
                 break;
             default:
                 printf("Incorrect input, please try again: ");
-                system("cls");
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
                 break;
         }
     }
