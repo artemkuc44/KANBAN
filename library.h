@@ -10,12 +10,12 @@
 #define MAX_NAME 50
 
 
-typedef struct item {
+typedef struct node {
     char name[MAX_NAME];
-    struct item* next;
-} item;
+    struct node* next;
+} node;
 
-item* loadFile(int type);
+node* loadFile(int type);
 void editList();
 int displayMenu();
 

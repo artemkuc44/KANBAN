@@ -1,7 +1,8 @@
 #include "library.h"
 
 
-item* loadFile(int type) {
+node* loadFile(int type) {
+
     char filename[MAX_NAME];
     if (type == 1) {
         strcpy(filename, "defaultBoard.txt");
@@ -16,47 +17,45 @@ item* loadFile(int type) {
         return 0;
     }
 
-    item* head = NULL;
-    item* current = NULL;
+    node* head = NULL;
+    node* ptr = NULL;
 
     char line[MAX_NAME] = "";
 
     while (fgets(line, MAX_NAME, fp)) {
-        line[strcspn(line, "\n")] = '\0';//replaces newline that fgets put there
+        line[strcspn(line, "\n")] = '\0';
 
+        node* new_node = malloc(sizeof(node));
 
-        item* new_item = malloc(sizeof(item));
+        strcpy(new_node->name, line);
+        new_node->next = NULL;//marks end of list
 
-        strcpy(new_item->name, line);
-        new_item->next = NULL;
-
-        if (head == NULL) {//head will be null during first iteration
-            head = new_item;//creates start of list
+        if (head == NULL) {
+            head = new_node;
         } else {
-            current->next = new_item;
+            ptr->next = new_node;
         }
-        current = new_item;//needed in else{
-
+        ptr = new_node;
 
     }
     fclose(fp);
 
     printf("\n'%s' data:\n\n",filename);
     int count = 0;
+    node* start = head;
     while (head != NULL) {
-
-        printf("%s\n", head->name);
+        if (head->name[0] == ' ') {
+            printf("Device Name: %s\n", head->name);
+        } else {
+            printf("Person Name: %s\n", head->name);
+        }
         count ++;
-
         head = head->next;
     }
+
     printf("%d",count);
 
-    //Free
-    while (head != NULL) {
-        item* next = head->next;
-        free(head);
-        head = next;
-    }
-    return head;
+    return start;//returns pointer to start of linked list
+
+
 }
