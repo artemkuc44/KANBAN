@@ -16,7 +16,12 @@ typedef struct node {
 } node;
 void printBoard(node * head);
 node* loadFile(int type);
-node* editItem(node * head);
+
+int editItem(node * head);
+int addItem(node * head);
+int deleteItem(node * head);
+
+
 int editList(node* head);
 int displayMenu();
 int displayEditMenu();

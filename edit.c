@@ -1,6 +1,76 @@
 
 #include "library.h"
-node* editItem(node* head){
+
+int deleteItem(node* head){
+    node* owner = head;
+    char itemName[MAX_NAME];
+    char tempItemName[MAX_NAME];
+
+    printf("owner:  %s\n",owner->name);
+
+    //clear input buffer
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
+    printf("Enter the name of the item you would like to edit: ");
+    fgets(tempItemName, MAX_NAME, stdin);
+    tempItemName[strcspn(tempItemName, "\n")] = '\0'; // remove newline character
+
+    strcpy(itemName, "    ");
+    strcat(itemName,tempItemName);
+
+    while(head != NULL && strcmp(head->name,itemName) != 0){
+        head = head->next;
+    }
+    if(head == NULL){
+        printf("Item named '%s' not found\n",tempItemName);
+        printf("Press any key to continue...");
+        getchar();
+
+        return -1;
+    }else{
+        node* temp = owner;
+        while (temp->next != head) {
+            temp = temp->next;
+        }
+        temp->next = head->next;
+        printf("Item named '%s' deleted\n",head->name+4);
+        free(head);
+    }
+    return 0;
+
+}
+
+int addItem(node* head){
+    node* owner = head;
+    char newItemName[MAX_NAME];
+
+    // clear input buffer
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
+    printf("Enter the name of the item you would like to add: ");
+    fgets(newItemName, MAX_NAME, stdin);
+    newItemName[strcspn(newItemName, "\n")] = '\0'; // remove newline character
+
+    // create new node
+    node* new_node = malloc(sizeof(node));
+    strcpy(new_node->name, "    "); // add indentation
+    strcat(new_node->name, newItemName);
+    new_node->next = NULL;
+
+    // append to end of list
+    node* current = owner;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = new_node;
+
+    return 0;
+}
+
+
+int editItem(node* head){
     node* owner = head;
     char itemName[MAX_NAME];
     char tempItemName[MAX_NAME];
@@ -8,23 +78,29 @@ node* editItem(node* head){
 
     printf("owner:  %s\n",owner->name);
 
-    // clear input buffer
+    //clear input buffer
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("Edit the name of the item you would like to edit: ");
+    printf("Enter the name of the item you would like to edit: ");
     fgets(tempItemName, MAX_NAME, stdin);
     tempItemName[strcspn(tempItemName, "\n")] = '\0'; // remove newline character
 
     strcpy(itemName, "    ");
     strcat(itemName,tempItemName);
 
-    // find the node to edit
-    while(strcmp(head->name,itemName) != 0){
+    while(head != NULL && strcmp(head->name,itemName) != 0){
         head = head->next;
     }
-    printf("Device named: '%s' found\n",head->name+4);//+4 to not print the formatting spaces
+    if(head == NULL){
+        printf("Item named '%s' not found\n",tempItemName);
+        printf("Press any key to continue...");
+        getchar();
 
+        return -1;
+    }else{
+        printf("Item named '%s' found\n",head->name+4);
+    }
     //read in the new item name
     printf("Enter the new name for the item: ");
 
@@ -34,7 +110,7 @@ node* editItem(node* head){
     strcat(newItemName,tempItemName);
 
     strcpy(head->name, newItemName);
-    return owner;
+    return 0;
 }
 
 
@@ -68,10 +144,11 @@ int editList(node* head) {
             case 1:
                 editItem(head);
                 break;
-
             case 2:
+                addItem(head);
                 break;
             case 3:
+                deleteItem(head);
                 break;
             case 4:
                 return 0;

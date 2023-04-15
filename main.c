@@ -16,14 +16,22 @@ int main(void)
         switch(option)
         {
             case 1:
-                loadFile(option);
+                if(start == NULL){
+                    start = loadFile(option);
+                }
+                else{
+                    printBoard(start);
+                }
 
                 break;
             case 2:
                 loadFile(option);
                 break;
             case 3:
-                start = loadFile(1);
+                if(start == NULL){
+                    start = loadFile(1);
+
+                }
                 editList(start);
                 printBoard(start);
                 break;
