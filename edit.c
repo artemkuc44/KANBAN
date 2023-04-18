@@ -12,23 +12,20 @@ int deleteItem(node* head){
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("Enter the name of the item you would like to edit: ");
+    printf("Enter the name of the item you would like to delete: ");
     fgets(tempItemName, MAX_NAME, stdin);
     tempItemName[strcspn(tempItemName, "\n")] = '\0'; // remove newline character
 
     strcpy(itemName, "    ");
     strcat(itemName,tempItemName);
 
-    while(head != NULL && strcmp(head->name,itemName) != 0){
-        head = head->next;
-    }
-    if(head == NULL){
-        printf("Item named '%s' not found\n",tempItemName);
-        printf("Press any key to continue...");
-        getchar();
+    head = head->next;
 
-        return -1;
-    }else{
+    while(head->next != NULL && strcmp(head->name,itemName) != 0 && head->name[0] == ' '){
+        head = head->next;
+        printf("head next name = %s\n",head->next->name);
+    }
+    if(strcmp(head->name,itemName) == 0){
         node* temp = owner;
         while (temp->next != head) {
             temp = temp->next;
@@ -36,6 +33,12 @@ int deleteItem(node* head){
         temp->next = head->next;
         printf("Item named '%s' deleted\n",head->name+4);
         free(head);
+    }else{
+        printf("Item named '%s' not found\n",tempItemName);
+        printf("Press any key to continue...");
+        getchar();
+
+        return -1;
     }
     return 0;
 
@@ -61,10 +64,13 @@ int addItem(node* head){
 
     // append to end of list
     node* current = owner;
-    while (current->next != NULL) {
+    node* temp;
+    while (current->next != NULL && current->name[0] != ' '){
         current = current->next;
+        temp = current->next;
     }
     current->next = new_node;
+    new_node->next = temp;//ammends the previously broken link
 
     return 0;
 }
@@ -159,7 +165,5 @@ int editList(node* head) {
                 break;
         }
     }
-
-
 
 }

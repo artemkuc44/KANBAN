@@ -12,7 +12,6 @@ int main(void)
     while (1) //loops until valid path is taken
     {
         option = displayMenu();
-
         switch(option)
         {
             case 1:
@@ -22,10 +21,9 @@ int main(void)
                 else{
                     printBoard(start);
                 }
-
                 break;
             case 2:
-                loadFile(option);
+                start = loadFile(option);
                 break;
             case 3:
                 if(start == NULL){
