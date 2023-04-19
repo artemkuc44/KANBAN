@@ -34,7 +34,12 @@ int main(void)
                 printBoard(start);
                 break;
             case 4:
-                //
+                if(start == NULL){
+                    start = loadFile(1);
+                }
+                editBoard(&start);
+                printf("start->name = %s\n",start->name);
+                printBoard(start);
                 break;
             case 5:
                 //

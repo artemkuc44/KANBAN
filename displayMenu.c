@@ -16,10 +16,9 @@ int displayMenu() {
 
     return option;
 }
-int displayEditMenu() {
+int displayEditListMenu() {
     int opt;
 
-    // Display menu with 6 options.
     printf("\nMenu:\n");
     printf("1. Edit an item\n");
     printf("2. Add a new item\n");
@@ -30,6 +29,22 @@ int displayEditMenu() {
 
     return opt;
 }
+
+int displayEditBoardMenu(){
+    int opt;
+
+    // Display menu with 6 options.
+    printf("\nMenu:\n");
+    printf("1. Edit the name of a list\n");
+    printf("2. Add a new list\n");
+    printf("3. Delete a list\n");
+    printf("4. Return to main menu\n");
+    printf("Enter your choice (1-4): ");
+    scanf("%d", &opt);
+
+    return opt;
+}
+
 
 
 

@@ -23,7 +23,6 @@ int deleteItem(node* head){
 
     while(head->next != NULL && strcmp(head->name,itemName) != 0 && head->name[0] == ' '){
         head = head->next;
-        printf("head next name = %s\n",head->next->name);
     }
     if(strcmp(head->name,itemName) == 0){
         node* temp = owner;
@@ -45,6 +44,7 @@ int deleteItem(node* head){
 }
 
 int addItem(node* head){
+    //char test[4];
     node* owner = head;
     char newItemName[MAX_NAME];
 
@@ -56,18 +56,20 @@ int addItem(node* head){
     fgets(newItemName, MAX_NAME, stdin);
     newItemName[strcspn(newItemName, "\n")] = '\0'; // remove newline character
 
-    // create new node
     node* new_node = malloc(sizeof(node));
     strcpy(new_node->name, "    "); // add indentation
     strcat(new_node->name, newItemName);
     new_node->next = NULL;
 
-    // append to end of list
     node* current = owner;
     node* temp;
+
+
+    //printf("test == %d",strcmp(test,"    "));
     while (current->next != NULL && current->name[0] != ' '){
         current = current->next;
         temp = current->next;
+        //memcpy(test,current->next->name,4);
     }
     current->next = new_node;
     new_node->next = temp;//ammends the previously broken link
@@ -143,7 +145,7 @@ int editList(node* head) {
     }
     while (1) //loops until valid path is taken
     {
-        option = displayEditMenu();
+        option = displayEditListMenu();
 
         switch(option)
         {
