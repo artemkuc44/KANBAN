@@ -1,11 +1,6 @@
 #include "library.h"
 void printBoard(node* head){
     while (head != NULL) {
-//        if (head->name[0] == ' ') {
-//            printf("Device Name: %s\n", head->name);
-//        } else {
-//            printf("Person Name: %s\n", head->name);
-//        }
         printf("%s\n",head->name);
         head = head->next;
     }
@@ -59,4 +54,24 @@ node* loadFile(int type) {
     return start;//returns pointer to start of linked list
 
 
+}
+void saveBoard(node * head){
+    char filename[MAX_NAME];
+    printf("Enter the name of the file you would like to save the board to:");
+    scanf("%s",filename);
+    FILE *fp = fopen(filename, "w");
+    if (!fp) {
+        printf("Error could not open file %s\n", filename);
+        return;
+    }
+
+    node* current = head;
+    while (current != NULL) {
+        fprintf(fp, "%s\n", current->name);
+        current = current->next;
+    }
+
+    fclose(fp);
+
+    printf("\nSuccessfully saved to '%s'\n",filename);
 }

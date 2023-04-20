@@ -41,11 +41,11 @@ int main(void)
                 printBoard(start);
                 break;
             case 5:
-                //
+                saveBoard(start);
+
                 break;
             case 6:
                 return 0;
-                break;
             default:
                 printf("Incorrect input, please try again: ");
                 int c;

@@ -32,5 +32,7 @@ int displayMenu();
 int displayEditListMenu();
 int displayEditBoardMenu();
 
+void saveBoard(node * head);
+
 #endif //ASSIGNMENT3_LIBRARY_H
 
