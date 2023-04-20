@@ -5,8 +5,10 @@
 
 int main(void)
 {
-    node* start = NULL;
     system("cls");
+    ascii();
+    node* start = NULL;
+
     int option;
 
     while (1) //loops until valid path is taken
@@ -45,6 +47,7 @@ int main(void)
 
                 break;
             case 6:
+                ascii();
                 return 0;
             default:
                 printf("Incorrect input, please try again: ");

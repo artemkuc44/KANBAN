@@ -33,6 +33,6 @@ int displayEditListMenu();
 int displayEditBoardMenu();
 
 void saveBoard(node * head);
-
+void ascii();
 #endif //ASSIGNMENT3_LIBRARY_H
 
