@@ -24,6 +24,7 @@ int deleteItem(node * head);
 
 int editName(node * head);
 int addName(node ** head);
+int deleteList(node ** head);
 
 int editList(node* head);
 int editBoard(node** head);

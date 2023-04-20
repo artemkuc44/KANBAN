@@ -19,7 +19,7 @@ int deleteItem(node* head){
     strcpy(itemName, "    ");
     strcat(itemName,tempItemName);
 
-    head = head->next;
+    head = head->next;//needed to enter while loop
 
     while(head->next != NULL && strcmp(head->name,itemName) != 0 && head->name[0] == ' '){
         head = head->next;
@@ -40,7 +40,6 @@ int deleteItem(node* head){
         return -1;
     }
     return 0;
-
 }
 
 int addItem(node* head){
@@ -48,7 +47,7 @@ int addItem(node* head){
     node* owner = head;
     char newItemName[MAX_NAME];
 
-    // clear input buffer
+    //clear input buffer
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
@@ -65,12 +64,8 @@ int addItem(node* head){
     node* temp;
 
 
-    //printf("test == %d",strcmp(test,"    "));
-    while (current->next != NULL && current->name[0] != ' '){
-        current = current->next;
-        temp = current->next;
-        //memcpy(test,current->next->name,4);
-    }
+    temp = current->next;
+
     current->next = new_node;
     new_node->next = temp;//ammends the previously broken link
 

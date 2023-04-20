@@ -38,7 +38,6 @@ int main(void)
                     start = loadFile(1);
                 }
                 editBoard(&start);
-                printf("start->name = %s\n",start->name);
                 printBoard(start);
                 break;
             case 5:
