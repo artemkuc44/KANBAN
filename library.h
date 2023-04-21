@@ -33,6 +33,9 @@ int displayEditListMenu();
 int displayEditBoardMenu();
 
 void saveBoard(node * head);
-void ascii();
+
+void ascii1();
+void ascii2();
+
 #endif //ASSIGNMENT3_LIBRARY_H
 

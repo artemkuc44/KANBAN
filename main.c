@@ -6,7 +6,7 @@
 int main(void)
 {
     system("cls");
-    ascii();
+    ascii1();
     node* start = NULL;
 
     int option;
@@ -47,7 +47,8 @@ int main(void)
 
                 break;
             case 6:
-                ascii();
+                ascii1();
+                ascii2();
                 return 0;
             default:
                 printf("Incorrect input, please try again: ");
